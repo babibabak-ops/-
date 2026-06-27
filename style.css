@@ -6,15 +6,18 @@
 
 body{
 
-    direction: rtl;
+    direction:rtl;
 
-    font-family: Tahoma, sans-serif;
+    font-family:Tahoma,sans-serif;
 
-    background: radial-gradient(circle at top,#1b2735,#090a0f);
+    background:#0b1020;
+
+    background-image:
+    radial-gradient(circle at top,#1f2d4d,#0b1020 70%);
+
+    color:#fff;
 
     height:100vh;
-
-    overflow:hidden;
 
     display:flex;
 
@@ -22,105 +25,74 @@ body{
 
     align-items:center;
 
-    color:white;
+    overflow:hidden;
 
 }
 
-.container{
-
-    width:90%;
-
-    max-width:600px;
-
-    text-align:center;
-
-    z-index:2;
-
-}
-
-h1{
-
-    font-size:48px;
-
-    margin-bottom:30px;
-
-    animation:fadeIn 2s;
-
-}
-
-#text{
-
-    font-size:22px;
-
-    line-height:2;
-
-    opacity:.9;
-
-    margin-bottom:40px;
-
-    animation:fadeIn 4s;
-
-}
-
-button{
-
-    background:#ff3b6b;
-
-    color:white;
-
-    border:none;
-
-    padding:18px 40px;
-
-    border-radius:50px;
-
-    font-size:22px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    box-shadow:0 0 25px rgba(255,80,120,.5);
-
-}
-
-button:hover{
-
-    transform:scale(1.08);
-
-}
-
-#openLetter{
-
-    display:none;
-
-    margin-top:50px;
-
-    font-size:30px;
-
-    color:#ffd7d7;
-
-    animation:fadeIn 2s;
-
-}
-
-#footer{
-
-    display:none;
-
-    margin-top:20px;
-
-    font-size:18px;
-
-    opacity:.8;
-
-}
-
-.stars{
+.overlay{
 
     position:absolute;
 
     inset:0;
 
-    background-image:
-    radial
+    background:
+    radial-gradient(circle,rgba(255,255,255,.08) 1px,transparent 1px);
+
+    background-size:45px 45px;
+
+    opacity:.25;
+
+}
+
+.container{
+
+    position:relative;
+
+    z-index:2;
+
+    width:90%;
+
+    max-width:650px;
+
+    text-align:center;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(8px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.heart{
+
+    font-size:42px;
+
+    color:#ff4d6d;
+
+    margin-bottom:20px;
+
+}
+
+h1{
+
+    font-size:44px;
+
+    margin-bottom:25px;
+
+    font-weight:300;
+
+}
+
+.intro,
+.intro2{
+
+    line-height:2.2;
+
+    font-size:21px;
+
+    color:#
