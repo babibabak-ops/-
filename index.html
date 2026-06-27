@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 
@@ -19,32 +19,41 @@
 
 <body>
 
-<div class="background"></div>
+<!-- پس زمینه -->
+<div id="sky"></div>
 
-<main class="container">
+<!-- ستاره ها -->
+<div id="stars"></div>
 
-<div class="heart">
-❤
+<!-- ماه -->
+<div class="moon"></div>
+
+<!-- محتوای اصلی -->
+
+<main class="card">
+
+<div id="heart">
+♡
 </div>
 
-<h1>
-  برای تو که بهترین اتفاق زندگی منی...
+<h1 id="title">
+برای تو که بهترین اتفاق زندگی منی...
 </h1>
 
-<p class="intro">
+<p class="line hidden" id="line1">
 قبل از باز کردن این پاکت...
 </p>
 
-<p class="intro">
+<p class="line hidden" id="line2">
 فقط چند دقیقه کنار من بمان...
 </p>
 
-<p class="intro">
+<p class="line hidden" id="line3">
 می‌خواهم این چند لحظه،
-  فقط برای من و تو باشه...
+فقط برای من و تو باشه...
 </p>
 
-<button id="playButton">
+<button id="playButton" class="hidden">
 
 🎵
 
@@ -52,7 +61,7 @@
 
 </button>
 
-<section id="letterMessage">
+<section id="letterSection">
 
 <h2>
 
@@ -66,19 +75,43 @@
 
 </p>
 
+</section>
+
+<div id="progressContainer">
+
+<div id="progressBar"></div>
+
+</div>
+
+<div id="ending">
+
+<h2>
+
+دوستت دارم...
+
+</h2>
+
 <p>
 
-❤️
+بیشتر از آنچه کلمات بتوانند بگویند.
 
 </p>
 
-</section>
+<div class="signature">
+
+با تمام عشق
+
+<br>
+
+<strong>بابک</strong>
+
+</div>
+
+</div>
 
 <audio id="music">
 
 <source src="song.mp3" type="audio/mpeg">
-
-مرورگر شما از پخش موسیقی پشتیبانی نمی‌کند.
 
 </audio>
 
