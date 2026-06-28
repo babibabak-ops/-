@@ -3,139 +3,122 @@ const line2 = document.getElementById("line2");
 const line3 = document.getElementById("line3");
 
 const playButton = document.getElementById("playButton");
+const heart = document.getElementById("heart");
 
 const music = document.getElementById("music");
-
-const heart = document.getElementById("heart");
 
 const letterSection = document.getElementById("letterSection");
 
 const progressContainer = document.getElementById("progressContainer");
-
 const progressBar = document.getElementById("progressBar");
 
 const ending = document.getElementById("ending");
 
 
 
-window.addEventListener("load", () => {
+window.onload = function () {
 
     setTimeout(() => {
 
         line1.classList.remove("hidden");
         line1.classList.add("show");
 
-    }, 1000);
+    },1000);
 
 
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
         line2.classList.remove("hidden");
         line2.classList.add("show");
 
-    }, 2500);
+    },2500);
 
 
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
         line3.classList.remove("hidden");
         line3.classList.add("show");
 
-    }, 4200);
+    },4000);
 
 
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
         playButton.classList.remove("hidden");
         playButton.classList.add("show");
 
-    }, 6000);
+    },5500);
 
-});
+};
 
 
 
-playButton.addEventListener("click", () => {
+playButton.onclick = function(){
 
-    music.play().then(() => {
-    console.log("Music Started");
-}).catch((err) => {
-    console.log(err);
-});
+    music.play();
 
-    heart.innerHTML = "❤️";
+    heart.innerHTML="❤️";
 
     heart.classList.add("activeHeart");
 
-
-
-    playButton.classList.add("hide");
-
-
+    playButton.style.display="none";
 
     letterSection.classList.add("show");
 
+    progressContainer.style.display="block";
 
+    updateProgress();
 
-    progressContainer.style.display = "block";
+};
 
+function updateProgress(){
 
+    const timer = setInterval(function(){
 
-    startProgress();
+        if(music.duration){
 
-});
-function startProgress() {
+            const percent = (music.currentTime / music.duration) * 100;
 
-    const duration = music.duration || 180;
-
-    const interval = setInterval(() => {
-
-        if (music.ended) {
-
-            clearInterval(interval);
-
-            return;
+            progressBar.style.width = percent + "%";
 
         }
 
-        const percent = (music.currentTime / duration) * 100;
+        if(music.ended){
 
-        progressBar.style.width = percent + "%";
+            clearInterval(timer);
 
-    }, 200);
+            document.querySelector(".card").classList.add("fadeOut");
+
+            setTimeout(function(){
+
+                ending.classList.add("show");
+
+            },1000);
+
+        }
+
+    },200);
 
 }
 
 
 
-music.addEventListener("ended", () => {
+music.addEventListener("loadedmetadata",function(){
 
-    progressBar.style.width = "100%";
-
-
-
-    document.querySelector(".card").classList.add("fadeOut");
-
-
-
-    setTimeout(() => {
-
-        ending.classList.add("show");
-
-    }, 1200);
+    progressBar.style.width="0%";
 
 });
 
 
 
-music.addEventListener("pause", () => {
+music.addEventListener("pause",function(){
 
-    if (!music.ended) {
+    if(!music.ended){
 
-        progressBar.style.opacity = ".5";
+        progressBar.style.opacity="0.5";
 
     }
 
@@ -143,39 +126,16 @@ music.addEventListener("pause", () => {
 
 
 
-music.addEventListener("play", () => {
+music.addEventListener("play",function(){
 
-    progressBar.style.opacity = "1";
+    progressBar.style.opacity="1";
 
 });
-/* ---------- جلوگيری از خطای Promise در بعضی مرورگرها ---------- */
 
-music.addEventListener("error", () => {
+
+
+music.addEventListener("error",function(){
 
     alert("فایل song.mp3 پیدا نشد.");
 
 });
-
-
-/* ---------- اگر آهنگ دیر لود شد ---------- */
-
-music.addEventListener("loadedmetadata", () => {
-
-    progressBar.style.width = "0%";
-
-});
-
-
-/* ---------- ریست در صورت Refresh ---------- */
-
-window.addEventListener("beforeunload", () => {
-
-    music.pause();
-
-    music.currentTime = 0;
-
-});
-
-
-/* ---------- امکان کلیک دوباره وجود نداشته باشد ---------- */
-
