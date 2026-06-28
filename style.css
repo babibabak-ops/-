@@ -277,19 +277,17 @@ transform:translateY(0);
 }
 
 .hidden{
-
     opacity:0;
-
     transform:translateY(25px);
-
+    visibility:hidden;
+    pointer-events:none;
 }
 
 .show{
-
     opacity:1;
-
     transform:translateY(0);
-
+    visibility:visible;
+    pointer-events:auto;
 }
 
 /*==================================================
