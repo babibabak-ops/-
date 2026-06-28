@@ -1,72 +1,187 @@
+const line1 = document.getElementById("line1");
+const line2 = document.getElementById("line2");
+const line3 = document.getElementById("line3");
+
 const playButton = document.getElementById("playButton");
+
 const music = document.getElementById("music");
 
-const intro = document.querySelector(".intro");
-const intro2 = document.querySelector(".intro2");
-const heart = document.querySelector(".heart");
-const title = document.querySelector("h1");
+const heart = document.getElementById("heart");
 
-const letterMessage = document.getElementById("letterMessage");
+const letterSection = document.getElementById("letterSection");
 
-let started = false;
+const progressContainer = document.getElementById("progressContainer");
+
+const progressBar = document.getElementById("progressBar");
+
+const ending = document.getElementById("ending");
+
+
+
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        line1.classList.remove("hidden");
+        line1.classList.add("show");
+
+    }, 1000);
+
+
+
+    setTimeout(() => {
+
+        line2.classList.remove("hidden");
+        line2.classList.add("show");
+
+    }, 2500);
+
+
+
+    setTimeout(() => {
+
+        line3.classList.remove("hidden");
+        line3.classList.add("show");
+
+    }, 4200);
+
+
+
+    setTimeout(() => {
+
+        playButton.classList.remove("hidden");
+        playButton.classList.add("show");
+
+    }, 6000);
+
+});
+
+
 
 playButton.addEventListener("click", () => {
 
-    if(started) return;
-
-    started = true;
-
     music.play();
+
+    heart.innerHTML = "❤️";
+
+    heart.classList.add("activeHeart");
+
+
+
+    playButton.classList.add("hide");
+
+
+
+    letterSection.classList.add("show");
+
+
+
+    progressContainer.style.display = "block";
+
+
+
+    startProgress();
+
+});
+function startProgress() {
+
+    const duration = music.duration || 180;
+
+    const interval = setInterval(() => {
+
+        if (music.ended) {
+
+            clearInterval(interval);
+
+            return;
+
+        }
+
+        const percent = (music.currentTime / duration) * 100;
+
+        progressBar.style.width = percent + "%";
+
+    }, 200);
+
+}
+
+
+
+music.addEventListener("ended", () => {
+
+    progressBar.style.width = "100%";
+
+
+
+    document.querySelector(".card").classList.add("fadeOut");
+
+
+
+    setTimeout(() => {
+
+        ending.classList.add("show");
+
+    }, 1200);
+
+});
+
+
+
+music.addEventListener("pause", () => {
+
+    if (!music.ended) {
+
+        progressBar.style.opacity = ".5";
+
+    }
+
+});
+
+
+
+music.addEventListener("play", () => {
+
+    progressBar.style.opacity = "1";
+
+});
+/* ---------- جلوگيری از خطای Promise در بعضی مرورگرها ---------- */
+
+music.addEventListener("error", () => {
+
+    alert("فایل song.mp3 پیدا نشد.");
+
+});
+
+
+/* ---------- اگر آهنگ دیر لود شد ---------- */
+
+music.addEventListener("loadedmetadata", () => {
+
+    progressBar.style.width = "0%";
+
+});
+
+
+/* ---------- ریست در صورت Refresh ---------- */
+
+window.addEventListener("beforeunload", () => {
+
+    music.pause();
+
+    music.currentTime = 0;
+
+});
+
+
+/* ---------- امکان کلیک دوباره وجود نداشته باشد ---------- */
+
+playButton.disabled = true;
+
+playButton.addEventListener("click", () => {
 
     playButton.disabled = true;
 
-    playButton.style.opacity = "0";
-
-    setTimeout(()=>{
-
-        playButton.style.display="none";
-
-    },600);
-
-    setTimeout(()=>{
-
-        title.style.opacity=".25";
-        intro.style.opacity=".25";
-        intro2.style.opacity=".25";
-        heart.style.opacity=".25";
-
-    },1200);
-
-    setTimeout(()=>{
-
-        letterMessage.style.display="block";
-
-        letterMessage.animate([
-            {
-                opacity:0,
-                transform:"translateY(30px)"
-            },
-            {
-                opacity:1,
-                transform:"translateY(0)"
-            }
-        ],{
-            duration:1200,
-            fill:"forwards"
-        });
-
-    },2200);
-
 });
 
-music.addEventListener("ended",()=>{
 
-    document.body.animate([
-        {opacity:1},
-        {opacity:.92},
-        {opacity:1}
-    ],{
-        duration:2000
-    });
-
-});
+/* ---------- پایان ---------- */
