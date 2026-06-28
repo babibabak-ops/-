@@ -60,7 +60,11 @@ window.addEventListener("load", () => {
 
 playButton.addEventListener("click", () => {
 
-    music.play();
+    music.play().then(() => {
+    console.log("Music Started");
+}).catch((err) => {
+    console.log(err);
+});
 
     heart.innerHTML = "❤️";
 
@@ -175,13 +179,3 @@ window.addEventListener("beforeunload", () => {
 
 /* ---------- امکان کلیک دوباره وجود نداشته باشد ---------- */
 
-playButton.disabled = true;
-
-playButton.addEventListener("click", () => {
-
-    playButton.disabled = true;
-
-});
-
-
-/* ---------- پایان ---------- */
