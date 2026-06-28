@@ -1,68 +1,655 @@
+/*==================================================
+              RESET
+==================================================*/
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-    direction:rtl;
+
     font-family:'Vazirmatn',sans-serif;
-    background:linear-gradient(180deg,#08111f,#111b33,#08111f);
+    direction:rtl;
+
     min-height:100vh;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     overflow:hidden;
+
+    background:#050816;
+
     color:#fff;
+
 }
 
-/* ---------- پس زمینه ---------- */
+/*==================================================
+              SKY
+==================================================*/
 
-.background{
+#sky{
+
     position:fixed;
     inset:0;
+
     background:
-    radial-gradient(circle at 20% 20%,rgba(255,255,255,.08) 2px,transparent 2px),
-    radial-gradient(circle at 80% 30%,rgba(255,255,255,.06) 2px,transparent 2px),
-    radial-gradient(circle at 30% 80%,rgba(255,255,255,.05) 2px,transparent 2px);
+    radial-gradient(circle at top,#17284f 0%,#08101f 45%,#04060f 100%);
 
-    background-size:180px 180px;
-    animation:moveBackground 25s linear infinite;
-    opacity:.8;
-}
-
-@keyframes moveBackground{
-
-    from{
-
-        transform:translateY(0);
-
-    }
-
-    to{
-
-        transform:translateY(-180px);
-
-    }
+    z-index:-5;
 
 }
 
-/* ---------- کارت ---------- */
+/*==================================================
+              STARS
+==================================================*/
 
-.container{
+#stars{
 
-    position:relative;
+    position:fixed;
+    inset:0;
 
-    width:90%;
+    z-index:-4;
 
-    max-width:650px;
+    background-image:
 
-    padding:50px;
+    radial-gradient(2px 2px at 20px 40px,#fff,transparent),
+
+    radial-gradient(2px 2px at 90px 130px,#fff,transparent),
+
+    radial-gradient(1px 1px at 180px 60px,#fff,transparent),
+
+    radial-gradient(2px 2px at 280px 210px,#fff,transparent),
+
+    radial-gradient(2px 2px at 430px 90px,#fff,transparent),
+
+    radial-gradient(1px 1px at 580px 150px,#fff,transparent),
+
+    radial-gradient(2px 2px at 720px 80px,#fff,transparent),
+
+    radial-gradient(2px 2px at 850px 250px,#fff,transparent),
+
+    radial-gradient(1px 1px at 1050px 120px,#fff,transparent),
+
+    radial-gradient(2px 2px at 1250px 180px,#fff,transparent);
+
+    background-repeat:repeat;
+
+    background-size:1400px 800px;
+
+    animation:twinkle 5s linear infinite;
+
+    opacity:.85;
+
+}
+
+@keyframes twinkle{
+
+0%{
+
+opacity:.45;
+
+}
+
+25%{
+
+opacity:.8;
+
+}
+
+50%{
+
+opacity:1;
+
+}
+
+75%{
+
+opacity:.7;
+
+}
+
+100%{
+
+opacity:.45;
+
+}
+
+}
+
+/*==================================================
+              MOON
+==================================================*/
+
+.moon{
+
+    position:fixed;
+
+    top:70px;
+
+    left:70px;
+
+    width:110px;
+
+    height:110px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    box-shadow:
+
+    0 0 30px rgba(255,255,255,.7),
+
+    0 0 80px rgba(255,255,255,.25);
+
+    opacity:.95;
+
+    z-index:-3;
+
+}
+
+/*==================================================
+              CARD
+==================================================*/
+
+.card{
+
+    width:92%;
+
+    max-width:720px;
+
+    padding:55px 45px;
 
     text-align:center;
 
-    border-radius:28px;
+    border-radius:30px;
 
     background:rgba(255,255,255,.08);
 
-    backdrop-filter:blur(18
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+
+    0 25px 60px rgba(0,0,0,.45);
+
+    animation:cardAppear 1.5s ease;
+
+}
+
+@keyframes cardAppear{
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/*==================================================
+              HEART
+==================================================*/
+
+#heart{
+
+    font-size:54px;
+
+    color:white;
+
+    margin-bottom:25px;
+
+    transition:.5s;
+
+    animation:heartbeat 2.2s infinite;
+
+}
+
+.activeHeart{
+
+    color:#ff4d6d;
+
+}
+
+@keyframes heartbeat{
+
+0%{transform:scale(1);}
+25%{transform:scale(1.06);}
+50%{transform:scale(1);}
+75%{transform:scale(1.1);}
+100%{transform:scale(1);}
+
+}
+
+/*==================================================
+                  TITLE
+==================================================*/
+
+#title{
+
+    font-size:42px;
+
+    line-height:1.8;
+
+    font-weight:700;
+
+    margin-bottom:40px;
+
+    color:#ffffff;
+
+}
+
+/*==================================================
+                  TEXT
+==================================================*/
+
+.line{
+
+    font-size:22px;
+
+    line-height:2.3;
+
+    margin-bottom:18px;
+
+    color:#ececec;
+
+    transition:.8s;
+
+}
+
+.hidden{
+
+    opacity:0;
+
+    transform:translateY(25px);
+
+}
+
+.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+/*==================================================
+                  BUTTON
+==================================================*/
+
+#playButton{
+
+    margin-top:35px;
+
+    padding:18px 48px;
+
+    border-radius:60px;
+
+    border:1px solid rgba(255,255,255,.18);
+
+    background:rgba(255,255,255,.10);
+
+    color:white;
+
+    font-size:22px;
+
+    font-family:'Vazirmatn',sans-serif;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(15px);
+
+    transition:.35s;
+
+}
+
+#playButton:hover{
+
+    transform:translateY(-3px);
+
+    background:rgba(255,77,109,.30);
+
+    box-shadow:0 12px 35px rgba(255,77,109,.35);
+
+}
+
+#playButton.hide{
+
+    opacity:0;
+
+    transform:scale(.9);
+
+    pointer-events:none;
+
+}
+
+/*==================================================
+             LETTER SECTION
+==================================================*/
+
+#letterSection{
+
+    margin-top:45px;
+
+    opacity:0;
+
+    transition:1s;
+
+}
+
+#letterSection.show{
+
+    opacity:1;
+
+}
+
+#letterSection h2{
+
+    font-size:34px;
+
+    margin-bottom:20px;
+
+}
+
+#letterSection p{
+
+    font-size:21px;
+
+    color:#eeeeee;
+
+    line-height:2;
+
+}
+
+/*==================================================
+              PROGRESS BAR
+==================================================*/
+
+#progressContainer{
+
+    width:100%;
+
+    height:5px;
+
+    margin-top:40px;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.08);
+
+    display:none;
+
+}
+
+#progressBar{
+
+    width:0;
+
+    height:100%;
+
+    background:#ff4d6d;
+
+    transition:width .2s linear;
+
+}
+
+/*==================================================
+                ENDING
+==================================================*/
+
+#ending{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    background:rgba(3,5,10,.95);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:2s;
+
+}
+
+#ending.show{
+
+    opacity:1;
+
+}
+
+#ending h2{
+
+    font-size:48px;
+
+    margin-bottom:25px;
+
+}
+
+#ending p{
+
+    font-size:26px;
+
+    line-height:2;
+
+}
+
+.signature{
+
+    margin-top:60px;
+
+    font-size:24px;
+
+    line-height:2.2;
+
+    color:#f4f4f4;
+
+}
+
+.signature strong{
+
+    font-size:34px;
+
+    color:#ff7b93;
+
+}
+
+/*==================================================
+              RESPONSIVE
+==================================================*/
+
+@media(max-width:768px){
+
+.card{
+
+width:92%;
+
+padding:35px 22px;
+
+}
+
+.moon{
+
+width:80px;
+
+height:80px;
+
+top:30px;
+
+left:30px;
+
+}
+
+#title{
+
+font-size:32px;
+
+line-height:1.7;
+
+}
+
+.line{
+
+font-size:18px;
+
+line-height:2.1;
+
+}
+
+#playButton{
+
+width:100%;
+
+font-size:20px;
+
+padding:16px;
+
+}
+
+#letterSection h2{
+
+font-size:28px;
+
+}
+
+#letterSection p{
+
+font-size:18px;
+
+}
+
+#ending h2{
+
+font-size:34px;
+
+}
+
+#ending p{
+
+font-size:20px;
+
+}
+
+.signature{
+
+font-size:20px;
+
+}
+
+.signature strong{
+
+font-size:28px;
+
+}
+
+}
+
+/*==================================================
+              SMALL PHONES
+==================================================*/
+
+@media(max-width:430px){
+
+#title{
+
+font-size:28px;
+
+}
+
+.line{
+
+font-size:17px;
+
+}
+
+.card{
+
+padding:28px 18px;
+
+}
+
+}
+
+/*==================================================
+          FADE ANIMATIONS
+==================================================*/
+
+.fadeIn{
+
+animation:fadeIn .9s forwards;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.fadeOut{
+
+animation:fadeOut 1s forwards;
+
+}
+
+@keyframes fadeOut{
+
+from{
+
+opacity:1;
+
+}
+
+to{
+
+opacity:0;
+
+}
+
+}
