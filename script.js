@@ -58,19 +58,27 @@ window.onload = function () {
 
 playButton.onclick = function(){
 
-    music.play();
+    music.play().then(() => {
 
-    heart.innerHTML="❤️";
+        alert("پخش شروع شد");
 
-    heart.classList.add("activeHeart");
+        heart.innerHTML = "❤️";
 
-    playButton.style.display="none";
+        heart.classList.add("activeHeart");
 
-    letterSection.classList.add("show");
+        playButton.style.display = "none";
 
-    progressContainer.style.display="block";
+        letterSection.classList.add("show");
 
-    updateProgress();
+        progressContainer.style.display = "block";
+
+        updateProgress();
+
+    }).catch((e) => {
+
+        alert(e.name + " : " + e.message);
+
+    });
 
 };
 
